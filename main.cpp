@@ -24,15 +24,17 @@ class Solution {
       a = dy;
       b = -dx;
       c = dx * p1.y - dy * p1.x;
+      dist_div = sqrt(a * a + b * b);
     }
 
     double distanceTo(const Point& p) const {
-      return abs(a * p.x + b * p.y + c) / sqrt(a * a + b * b);
+      return abs(a * p.x + b * p.y + c) / dist_div;
     }
 
     int a;
     int b;
     int c;
+    double dist_div;
   };
 
  public:
@@ -67,6 +69,10 @@ void TestLargestTriangleArea() {
   {
     vector<vector<int>> points{{1,0},{0,0},{0,1}};
     ASSERT_DOUBLE_EQ(0.5, s.largestTriangleArea(points));
+  }
+  {
+    vector<vector<int>> points{{4,6},{6,5},{3,1}};
+    ASSERT_DOUBLE_EQ(5.5, s.largestTriangleArea(points));
   }
 }
 
